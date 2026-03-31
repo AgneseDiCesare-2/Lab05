@@ -17,3 +17,15 @@ class Controller:
             return
         self._view.txt_result.controls.append(ft.Text(f"Hello, {name}!"))
         self._view.update_page()
+
+    def cercaIscritti(self):
+        pass
+
+    def cercaStudente(self):
+        pass
+
+    def cercaCorso(self):
+        pass
+
+    def iscrivi(self):
+        pass
