@@ -39,7 +39,7 @@ class View:
         #menù a tendina corsi
         self._corsi = ft.Dropdown(width=450, label="Seleziona corso", options=[])
         self.controller.riempiDropdown()
-        self.btn_cercaIscritti = ft.ElevatedButton(text="Cerca Iscritti", on_click=self._controller.cercaIscritti)
+        self.btn_cercaIscritti = ft.ElevatedButton("Cerca Iscritti", on_click=self._controller.cercaIscritti)
         row1 = ft.Row(controls=[self._corsi, self.btn_cercaIscritti], alignment=ft.MainAxisAlignment.CENTER)
         self._page.add(row1)
 
@@ -67,9 +67,9 @@ class View:
         self._page.add(row2)
 
         #terza riga
-        self.btn_cercaStudente = ft.ElevatedButton(text="Cerca Studente", on_click=self._controller.cercaStudente)
-        self.btn_cercaCorsi = ft.ElevatedButton(text="Cerca Corso", on_click=self._controller.cercaCorso)
-        self.btn_iscrivi = ft.ElevatedButton(text="Cerca Iscrivi", on_click=self._controller.iscrivi)
+        self.btn_cercaStudente = ft.ElevatedButton("Cerca Studente", on_click=self._controller.cercaStudente)
+        self.btn_cercaCorsi = ft.ElevatedButton("Cerca Corso", on_click=self._controller.cercaCorso)
+        self.btn_iscrivi = ft.ElevatedButton("Cerca Iscrivi", on_click=self._controller.iscrivi)
         row3 = ft.Row(controls=[self.btn_cercaStudente, self.btn_cercaCorsi, self.btn_iscrivi],
                       alignment=ft.MainAxisAlignment.CENTER)
         self._page.add(row3)
