@@ -1,7 +1,7 @@
 import flet as ft
 
 
-class View(ft.UserControl):
+class View:
     def __init__(self, page: ft.Page):
         super().__init__()
         # page stuff
@@ -22,10 +22,10 @@ class View(ft.UserControl):
         self._page.theme_mode = ft.ThemeMode.LIGHT
         # controller (it is not initialized. Must be initialized in the main, after the controller is created)
         self._controller = None
+
         # graphical elements
         self._title = None
         self.txt_name = None
-        self.btn_hello = None
         self.txt_result = None
         self.txt_container = None
 
@@ -36,13 +36,12 @@ class View(ft.UserControl):
         self._page.controls.append(self._title)
 
 
-        #ROW with some controls
         #menù a tendina corsi
         self._corsi = ft.Dropdown(width=450, label="Seleziona corso", options=[])
         self.controller.riempiDropdown()
         self.btn_cercaIscritti = ft.ElevatedButton(text="Cerca Iscritti", on_click=self._controller.cercaIscritti)
         row1 = ft.Row(controls=[self._corsi, self.btn_cercaIscritti], alignment=ft.MainAxisAlignment.CENTER)
-        self.page.add(row1)
+        self._page.add(row1)
 
         # text field for the name, surname and student code
         self.txt_matricola = ft.TextField(
@@ -65,7 +64,7 @@ class View(ft.UserControl):
             read_only=True
         )
         row2 = ft.Row(controls=[self.txt_matricola, self.txt_nome, self.txt_cognome], alignment=ft.MainAxisAlignment.CENTER)
-        self.page.add(row2)
+        self._page.add(row2)
 
         #terza riga
         self.btn_cercaStudente = ft.ElevatedButton(text="Cerca Studente", on_click=self._controller.cercaStudente)
@@ -73,7 +72,7 @@ class View(ft.UserControl):
         self.btn_iscrivi = ft.ElevatedButton(text="Cerca Iscrivi", on_click=self._controller.iscrivi)
         row3 = ft.Row(controls=[self.btn_cercaStudente, self.btn_cercaCorsi, self.btn_iscrivi],
                       alignment=ft.MainAxisAlignment.CENTER)
-        self.page.add(row3)
+        self._page.add(row3)
 
         # List View where the reply is printed (lvOut)
         self.lvOut = ft.ListView(expand=1, spacing=10, padding=20, auto_scroll=True)

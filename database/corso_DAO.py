@@ -36,8 +36,7 @@ class DAO:
         for row in cursor:
             nuovo=Corso(row["codins"], row["crediti"], row["nome"], row["pd"])
             res.append(nuovo)
-            res.append(row["codins"])  # è un dizionario --> salvo codins
 
         cursor.close()
         cnx.close()
-        return res
+        return res #lista di corsi
