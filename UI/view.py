@@ -38,7 +38,7 @@ class View(ft.UserControl):
 
         #ROW with some controls
         #menù a tendina corsi
-        self._corsi = ft.Dropdown.Option(key=corso.codins, text=corso.__str__())
+        self._corsi = ft.Dropdown(width=450, label="Seleziona corso", options=[])
         self.controller.riempiDropdown()
         self.btn_cercaIscritti = ft.ElevatedButton(text="Cerca Iscritti", on_click=self._controller.cercaIscritti)
         row1 = ft.Row(controls=[self._corsi, self.btn_cercaIscritti], alignment=ft.MainAxisAlignment.CENTER)

@@ -7,16 +7,6 @@ class Controller:
         # the model, which implements the logic of the program and holds the data
         self._model = model
 
-    def handle_hello(self, e):
-        """Simple function to handle a button-pressed event,
-        and consequently print a message on screen"""
-        name = self._view.txt_name.value
-        if name is None or name == "":
-            self._view.create_alert("Inserire il nome")
-            return
-        self._view.txt_result.controls.append(ft.Text(f"Hello, {name}!"))
-        self._view.update_page()
-
     def cercaIscritti(self):
         pass
 
@@ -32,5 +22,5 @@ class Controller:
     #per riempire il menù a tendina
     def riempiDropdown(self): #non posso farlo nella view, devo leggere il database! LO METTO NEL MODELLO
         for corso in self._model.getAllCorsi():
-            self._view._corsi.options.append(ft.Dropdown.Option(key=corso.codins, text=corso.__str__()))
+            self._view._corsi.options.append(ft.dropdown.Option(key=corso.codins, text=str(corso)))
         return self._view._corsi #credo ?
