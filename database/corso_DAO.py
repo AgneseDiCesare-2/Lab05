@@ -1,21 +1,43 @@
 # Add whatever it is needed to interface with the DB Table corso
 
 from database.DB_connect import get_connection
-from dataclasses import dataclass
 
-@dataclass
-class corso_DAO:
-    codins: str
-    crediti: int
-    nome: str
-    pd: int
+#statico
+from database import DB_connect
+from model.corso import Corso
 
-    def __hash__(self):
-        return hash(self.codins)
+class DAO:
 
-    def __eq__(self, other):
-        return self.codins == other.codins
+    @staticmethod
+    def getCodins():
+        cnx = DB_connect.get_connection()
 
-    def __str__(self):
-        return f"{self.nome} ({self.codins})"
+        cursor = cnx.cursor(dictionary=True)
+        query = "select codins from corso"
+        cursor.execute(query)
 
+        res=[]
+        for row in cursor:
+            res.append(row["codins"]) #è un dizionario --> salvo codins
+
+        cursor.close()
+        cnx.close()
+        return res
+
+    @staticmethod
+    def getAllCorsi():
+        cnx = DB_connect.get_connection()
+
+        cursor = cnx.cursor(dictionary=True)
+        query = "select * from corso" #restituisce un dizionario con chiave codiceCorso
+        cursor.execute(query)
+
+        res = []
+        for row in cursor:
+            nuovo=Corso(row["codins"], row["crediti"], row["nome"], row["pd"])
+            res.append(nuovo)
+            res.append(row["codins"])  # è un dizionario --> salvo codins
+
+        cursor.close()
+        cnx.close()
+        return res

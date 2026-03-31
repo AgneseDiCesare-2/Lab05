@@ -5,6 +5,7 @@ class View(ft.UserControl):
     def __init__(self, page: ft.Page):
         super().__init__()
         # page stuff
+        self.lvOut = None
         self.btn_iscrivi = None
         self.btn_cercaStudente = None
         self.btn_cercaCorsi = None
@@ -38,6 +39,7 @@ class View(ft.UserControl):
         #ROW with some controls
         #menù a tendina corsi
         self._corsi = ft.Dropdown.Option(key=corso.codins, text=corso.__str__())
+        self.controller.riempiDropdown()
         self.btn_cercaIscritti = ft.ElevatedButton(text="Cerca Iscritti", on_click=self._controller.cercaIscritti)
         row1 = ft.Row(controls=[self._corsi, self.btn_cercaIscritti], alignment=ft.MainAxisAlignment.CENTER)
         self.page.add(row1)
@@ -74,8 +76,8 @@ class View(ft.UserControl):
         self.page.add(row3)
 
         # List View where the reply is printed (lvOut)
-        self.txt_result = ft.ListView(expand=1, spacing=10, padding=20, auto_scroll=True)
-        self._page.controls.append(self.txt_result)
+        self.lvOut = ft.ListView(expand=1, spacing=10, padding=20, auto_scroll=True)
+        self._page.controls.append(self.lvOut)
         self._page.update()
 
     @property

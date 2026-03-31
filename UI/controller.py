@@ -1,6 +1,5 @@
 import flet as ft
 
-
 class Controller:
     def __init__(self, view, model):
         # the view, with the graphical elements of the UI
@@ -29,3 +28,9 @@ class Controller:
 
     def iscrivi(self):
         pass
+
+    #per riempire il menù a tendina
+    def riempiDropdown(self): #non posso farlo nella view, devo leggere il database! LO METTO NEL MODELLO
+        for corso in self._model.getAllCorsi():
+            self._view._corsi.options.append(ft.Dropdown.Option(key=corso.codins, text=corso.__str__()))
+        return self._view._corsi #credo ?
