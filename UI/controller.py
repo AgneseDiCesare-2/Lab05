@@ -1,10 +1,14 @@
 import flet as ft
+
+import database.studente_DAO
 from database import studente_DAO
 
 class Controller:
     def __init__(self, view, model):
         # the view, with the graphical elements of the UI
         self.corsoSelezionato = None
+        self.matricola=None
+
         self._view = view
         # the model, which implements the logic of the program and holds the data
         self._model = model
@@ -12,7 +16,8 @@ class Controller:
     def cercaIscritti(self, e):
         self.corsoSelezionato= self._view._corsi.value#riconsce il corso selezionato nel dropdown
 
-        if not self.corsoSelezionato:
+        #ALERT NON FUNZIONA :-((
+        if self.corsoSelezionato is None:
             self._view.create_alert("Attenzione, devi selezionare un corso!")
             self._view.update_page()
             return
@@ -25,7 +30,18 @@ class Controller:
         self._view.update_page()
 
     def cercaStudente(self, e):
-        pass
+        #scritta la matricola deve completare automaticamente nome e cognome
+        self.matricola=self._view.txt_matricola.value
+
+        if self.matricola is None:
+            self._view.create_alert("Attenzione, devi selezionare un corso!")
+            self._view.update_page()
+            return
+        studente=database.studente_DAO.cercaStudente(self.matricola) #restituisce lo studente cercato
+        self._view.lvOut.controls.clear()
+
+        self._view.txt_nome.value = studente.nome
+        self._view.txt_cognome.value = studente.cognome
 
     def cercaCorso(self, e):
         pass

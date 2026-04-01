@@ -23,4 +23,21 @@ def get_iscritti(codins):
     cnx.close()
     return res
 
+@staticmethod
+def cercaStudente(matricola):
+    cnx = DB_connect.get_connection()
+    cursor = cnx.cursor(dictionary=True)
+    query = """select s.*"""
+    query = """select *
+                from studente
+                where matricola = %s"""
+    cursor.execute(query, (matricola,))
+    # restituisce i dati dello studente --> mi aspetto un solo studente
+    row=cursor.fetchone()
+    res=(StudentDAO(**row))
+
+    cursor.close()
+    cnx.close()
+    return res
+
 
