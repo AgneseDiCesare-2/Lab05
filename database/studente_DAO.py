@@ -7,10 +7,10 @@ from model.studente import StudentDAO
 def get_iscritti(codins):
     cnx = DB_connect.get_connection()
 
-    cursor = cnx.cursor()
+    cursor = cnx.cursor(dictionary=True)
     query = """select s.*
             from iscrizione i, studente s
-            where i.matricola = s.matricola & i.codins="%s" """
+            where i.matricola = s.matricola AND i.codins=%s """
     cursor.execute(query, (codins,))
     #restituisce i dati degli gli studenti
 

@@ -4,22 +4,25 @@ from database import studente_DAO
 class Controller:
     def __init__(self, view, model):
         # the view, with the graphical elements of the UI
+        self.corsoSelezionato = None
         self._view = view
         # the model, which implements the logic of the program and holds the data
         self._model = model
 
     def cercaIscritti(self, e):
-        corsoSelezionato=e.control.data #e.control.data riconsce il corso selezionato nel dropdown
+        self.corsoSelezionato= self._view._corsi.value#riconsce il corso selezionato nel dropdown
 
-        if corsoSelezionato is None:
+        if not self.corsoSelezionato:
             self._view.create_alert("Attenzione, devi selezionare un corso!")
             self._view.update_page()
             return
         #se ho selezionato un corso devo fare una query al database per trovare gli iscritti al corso
-        iscritti=studente_DAO.get_iscritti(corsoSelezionato)
+        iscritti=studente_DAO.get_iscritti(self.corsoSelezionato)
+        self._view.lvOut.controls.clear()
 
         for s in iscritti:
-            self._view.lvOut.controls.append(ft.Txt(s.__str__()))
+            self._view.lvOut.controls.append(ft.Text(str(s)))
+        self._view.update_page()
 
     def cercaStudente(self, e):
         pass
