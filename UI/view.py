@@ -37,7 +37,7 @@ class View:
 
 
         #menù a tendina corsi
-        self._corsi = ft.Dropdown(width=450, label="Seleziona corso", options=[])
+        self._corsi = ft.Dropdown(width=450, label="Seleziona corso", options=[], expand=True)
         self.controller.riempiDropdown()
         self.btn_cercaIscritti = ft.ElevatedButton("Cerca Iscritti", on_click=self._controller.cercaIscritti)
         row1 = ft.Row(controls=[self._corsi, self.btn_cercaIscritti], alignment=ft.MainAxisAlignment.CENTER)
@@ -47,29 +47,32 @@ class View:
         self.txt_matricola = ft.TextField(
             label="",
             width=200,
-            hint_text="matricola"
+            hint_text="matricola",
+            expand=True
         )
 
         self.txt_nome = ft.TextField(
             label="",
             width=200,
             hint_text="nome",
-            read_only=True
+            read_only=True,
+            expand=True
         )
 
         self.txt_cognome = ft.TextField(
             label="",
             width=200,
             hint_text="cognome",
-            read_only=True
+            read_only=True,
+            expand=True
         )
         row2 = ft.Row(controls=[self.txt_matricola, self.txt_nome, self.txt_cognome], alignment=ft.MainAxisAlignment.CENTER)
         self._page.add(row2)
 
         #terza riga
-        self.btn_cercaStudente = ft.ElevatedButton("Cerca Studente", on_click=self._controller.cercaStudente)
-        self.btn_cercaCorsi = ft.ElevatedButton("Cerca Corso", on_click=self._controller.cercaCorso)
-        self.btn_iscrivi = ft.ElevatedButton("Cerca Iscrivi", on_click=self._controller.iscrivi)
+        self.btn_cercaStudente = ft.ElevatedButton(content=ft.Text("Cerca Studente"), on_click=self._controller.cercaStudente) #in questa versione text= sta dando problemi :-(
+        self.btn_cercaCorsi = ft.ElevatedButton(content=ft.Text("Cerca Corso"), on_click=self._controller.cercaCorso)
+        self.btn_iscrivi = ft.ElevatedButton(content=ft.Text("Cerca Iscrivi"), on_click=self._controller.iscrivi)
         row3 = ft.Row(controls=[self.btn_cercaStudente, self.btn_cercaCorsi, self.btn_iscrivi],
                       alignment=ft.MainAxisAlignment.CENTER)
         self._page.add(row3)
