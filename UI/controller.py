@@ -67,21 +67,23 @@ class Controller:
     def iscrivi(self, e):
         matricola=self._view.txt_matricola.value
         codins=self._view._corsi.value
-        if matricola=="" or codins=="":
+        if matricola=="" or codins is None:
             self._view.create_alert("Attenzione, devi inserire una matricola e un codice corso!")
-
+            return
         #controllo che lo studente inserito sia presente nel database
         studente = studente_DAO.cercaStudente(matricola)
         if studente is None:
-
             self._view.create_alert("Attenzione, la matricola inserita non esiste!")
+            return
         esito=corso_DAO.iscrivi(matricola, codins)
         self._view.lvOut.controls.clear()
 
         if esito:
             self._view.create_alert("Studente iscritto correttamente")
+            return
         else:
             self._view.create_alert("Errore nell'iscrizione")
+            return
 
     #per riempire il menù a tendina
     def riempiDropdown(self): #non posso farlo nella view, devo leggere il database! LO METTO NEL MODELLO
