@@ -34,6 +34,7 @@ def cercaStudente(matricola):
     cursor.execute(query, (matricola,))
     # restituisce i dati dello studente --> mi aspetto un solo studente
     row=cursor.fetchone()
+
     if row is None:
         return
 

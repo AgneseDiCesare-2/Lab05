@@ -72,7 +72,7 @@ class View:
         #terza riga
         self.btn_cercaStudente = ft.ElevatedButton(content=ft.Text("Cerca Studente"), on_click=self._controller.cercaStudente) #in questa versione text= sta dando problemi :-(
         self.btn_cercaCorsi = ft.ElevatedButton(content=ft.Text("Cerca Corso"), on_click=self._controller.cercaCorso)
-        self.btn_iscrivi = ft.ElevatedButton(content=ft.Text("Cerca Iscrivi"), on_click=self._controller.iscrivi)
+        self.btn_iscrivi = ft.ElevatedButton(content=ft.Text("Iscrivi"), on_click=self._controller.iscrivi)
         row3 = ft.Row(controls=[self.btn_cercaStudente, self.btn_cercaCorsi, self.btn_iscrivi],
                       alignment=ft.MainAxisAlignment.CENTER)
         self._page.add(row3)

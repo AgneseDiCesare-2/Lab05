@@ -58,3 +58,24 @@ def getCorsiStudente(matricola):
     cursor.close()
     cnx.close()
     return res
+
+@staticmethod
+def iscrivi(matricola, codins):
+    cnx = DB_connect.get_connection()
+    cursor = cnx.cursor()
+
+    query = """INSERT INTO iscrizione (matricola, codins)
+               VALUES (%s, %s)"""
+    #NB
+    try:
+        cursor.execute(query, (matricola, codins))
+        cnx.commit()
+        return True
+
+    except Exception as e:
+        print(e)
+        return False
+
+    finally:
+        cursor.close()
+        cnx.close()
