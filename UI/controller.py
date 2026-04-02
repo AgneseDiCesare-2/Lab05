@@ -69,20 +69,24 @@ class Controller:
         codins=self._view._corsi.value
         if matricola=="" or codins is None:
             self._view.create_alert("Attenzione, devi inserire una matricola e un codice corso!")
+            self._view.update_page()
             return
         #controllo che lo studente inserito sia presente nel database
         studente = studente_DAO.cercaStudente(matricola)
         if studente is None:
             self._view.create_alert("Attenzione, la matricola inserita non esiste!")
+            self._view.update_page()
             return
         esito=corso_DAO.iscrivi(matricola, codins)
         self._view.lvOut.controls.clear()
 
         if esito:
-            self._view.create_alert("Studente iscritto correttamente")
+            self._view.lvOut.controls.append(ft.Text("Studente iscritto correttamente"))
+            self._view.update_page()
             return
         else:
-            self._view.create_alert("Errore nell'iscrizione")
+            self._view.lvOut.controls.append(ft.Text("Errore nell'iscrizione"))
+            self._view.update_page()
             return
 
     #per riempire il menù a tendina
