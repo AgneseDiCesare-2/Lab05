@@ -6,7 +6,7 @@ class Model:
 
     #il modello non lo sa --> lo chiede al DAO
     def getCodins(self):
-        return corso_DAO.DAO.getCodins() #chiamo un metodo statico
+        return corso_DAO.getCodins() #chiamo un metodo statico
 
     def getAllCorsi(self):
-        return corso_DAO.DAO.getAllCorsi()
+        return corso_DAO.getAllCorsi()
